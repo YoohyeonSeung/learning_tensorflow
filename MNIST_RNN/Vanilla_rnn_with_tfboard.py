@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Dec 20 17:34:43 2016
-
 @author: tomhope
 """
 from __future__ import print_function
@@ -11,17 +10,17 @@ import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
-# 매개변수 정의
+# Define some parameters
 element_size = 28
 time_steps = 28
 num_classes = 10
 batch_size = 128
 hidden_layer_size = 128
 
-# 텐서보드 모델 요약을 저장할 위치
+# Where to save TensorBoard model summaries
 LOG_DIR = "c:/workspaces/learning_tensorflow/MNIST_RNN"
 
-# 입력과 레이블을 위한 플레이스 홀더 생성
+# Create placeholders for inputs, labels
 _inputs = tf.placeholder(tf.float32,
                          shape=[None, time_steps, element_size],
                          name='inputs')
@@ -42,7 +41,7 @@ def variable_summaries(var):
         tf.summary.histogram('histogram', var)
 
 
-# 입력 및 은닉 계층에 적용할 가중치와 편향값
+# Weights and bias for input and hidden layer
 with tf.name_scope('rnn_weights'):
     with tf.name_scope("W_x"):
         Wx = tf.Variable(tf.zeros([element_size, hidden_layer_size]))
